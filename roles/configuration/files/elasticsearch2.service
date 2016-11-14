@@ -1,0 +1,39 @@
+[Unit]
+Description=Elasticsearch
+Documentation=http://www.elastic.co
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Environment=ES_HOME=/local/es/install
+Environment=CONF_DIR=/etc/elasticsearch/data02
+Environment=DATA_DIR=/data02/es/data
+Environment=LOG_DIR=/data02/es/logs
+Environment=PID_DIR=/var/run/elasticsearch
+EnvironmentFile=-/etc/sysconfig/elasticsearch
+
+WorkingDirectory=/local/es/install
+
+User=elasticsearch
+Group=elasticsearch
+
+ExecStartPre=/local/es/install/bin/elasticsearch-systemd-pre-exec
+
+ExecStart=/local/es/install/bin/elasticsearch \
+	                                            -Des.pidfile=${PID_DIR}/elasticsearch02.pid \
+	                                            -Des.default.path.home=${ES_HOME} \
+	                                            -Des.default.path.logs=${LOG_DIR} \
+	                                            -Des.default.path.data=${DATA_DIR} \
+	                                            -Des.default.path.conf=${CONF_DIR}
+
+StandardOutput=journal
+StandardError=inherit
+
+LimitNOFILE=65535
+LimitMEMLOCK=infinity
+TimeoutStopSec=0
+KillSignal=SIGTERM
+SendSIGKILL=no
+SuccessExitStatus=143
+[Install]
+WantedBy=multi-user.target

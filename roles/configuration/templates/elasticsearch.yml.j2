@@ -1,0 +1,16 @@
+
+cluster.name: test-es
+network.host: ${HOSTNAME}
+node.name: {{ item.hostname }}
+node.rack: ${HOSTNAME}
+path.home: /local/es/install
+path.data: {{ item.path_data }}
+path.logs: {{ item.path_logs }}
+path.repo: {{ item.path_repo }}
+node.master: {{ item.node_master }}
+node.data: {{ item.node_data }}
+bootstrap.mlockall: true
+http.port: {{ item.http_port }}
+transport.tcp.port: {{ item.transport_port }} 
+discovery.zen.ping.multicast.enabled: false
+discovery.zen.ping.unicast.hosts: ["{{ server1 }}:9300", "{{ server1 }}:9301", "{{ server1 }}:9302", "{{ server2 }}:9300", "{{ server2 }}:9301", "{{ server2 }}:9302", "{{ server3 }}:9300", "{{ server3 }}:9301", "{{ server3 }}:9302"]

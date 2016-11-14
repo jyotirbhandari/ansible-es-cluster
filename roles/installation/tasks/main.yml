@@ -1,0 +1,18 @@
+---
+- name: Modify hosts file
+  template: src=hosts.j2 dest=/etc/hosts owner=root group=root mode=0644
+
+- name: Pre-installation procedures
+  stat: path=/etc/elasticsearch
+  register: esdir
+
+- name: Install elasticsearch with dependencies
+  yum: name={{ item }} state=latest
+  with_items:
+     - "{{ es_dependencies }}"
+  when: esdir.stat.isdir is undefined
+
+- name: Disable elasticsearch
+  systemd: enabled=no masked=yes name=elasticsearch
+  when: esdir.stat.isdir is undefined
+

@@ -1,0 +1,5 @@
+---
+es_version: 2.3.4
+es_dependencies:
+  - java
+  - https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/rpm/elasticsearch/{{ es_version }}/elasticsearch-{{ es_version }}.rpm 

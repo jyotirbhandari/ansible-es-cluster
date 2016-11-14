@@ -1,0 +1,9 @@
+---
+- name: Start master elasticsearch
+  systemd: state=started daemon_reload=yes name=elasticsearch0.service
+
+- name: Start data01 elasticsearch
+  systemd: state=started daemon_reload=yes name=elasticsearch1.service
+
+- name: Start data02 elasticsearch
+  systemd: state=started daemon_reload=yes name=elasticsearch2.service

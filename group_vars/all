@@ -1,0 +1,13 @@
+---
+server1_ip: 192.168.100.21
+server2_ip: 192.168.100.22
+server3_ip: 192.168.100.23
+
+server1: server1
+server2: server2
+server3: server3
+
+masterdir: local
+datadir0: data00
+datadir1: data01
+datadir2: data02

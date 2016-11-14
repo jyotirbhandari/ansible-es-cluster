@@ -1,0 +1,8 @@
+--- 
+
+- hosts: nodes
+  remote_user: vagrant
+  become: yes
+  roles:
+    - installation
+    - configuration 
