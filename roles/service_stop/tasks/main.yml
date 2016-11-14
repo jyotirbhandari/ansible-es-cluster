@@ -1,9 +1,9 @@
 ---
 - name: Stop data02 elasticsearch
-  systemd: state=stopped name=elasticsearch2.service
+  systemd: state=stopped name=elasticsearch0.service
 
 - name: Start data01 elasticsearch
   systemd: state=stopped  name=elasticsearch1.service
 
 - name: Start master elasticsearch
-  systemd: state=stopped  name=elasticsearch0.service
+  systemd: state=stopped  name=elasticsearch2.service
