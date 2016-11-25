@@ -9,11 +9,28 @@ Three minimal instances of RHEL/CentOS 7.x with ssh and internet access.
 
 # Nodes :
 
-Defining all the three nodes in the host file.
+Defining all the three nodes ip adddress in the host file.
 
 ```
 [nodes]
-192.168.100.21
-192.168.100.22
-192.168.100.23
+x.x.x.x
+y.y.y.y
+z.z.z.z
 ```
+
+# Global Variable :
+
+Defining directories and server host name in group_vars
+
+```
+---
+server1: server1
+server2: server2
+server3: server3
+
+masterdir: local
+datadir0: data00
+datadir1: data01
+datadir2: data02
+```
+
