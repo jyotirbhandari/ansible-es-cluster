@@ -1,90 +1,38 @@
-# Ansible-ES-Cluster : Elasticsearch Cluster version 2.3.4
+Role Name
+=========
 
-An Ansible Role that installs Cluster of Elasticsearch version 2.3.4 on RHEL/CentOS 7.x
-In this playbook, I have used CentOS 7.x vagrant box minimal image and then modified ethernet to bridge mode for a LAN environment.  
+A brief description of the role goes here.
 
-# Requirements :
+Requirements
+------------
 
-Three minimal instances of RHEL/CentOS 7.x with ssh and internet access.
+Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
 
-# Nodes :
+Role Variables
+--------------
 
-Defining all the three nodes ip adddress in the host file.
+A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
 
-```
-[nodes]
-x.x.x.x
-y.y.y.y
-z.z.z.z
-```
+Dependencies
+------------
 
-# Global Variables :
+A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
 
-Defining directories and server host name in group_vars
+Example Playbook
+----------------
 
-```
----
-server1: server1
-server2: server2
-server3: server3
+Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
-masterdir: local
-datadir0: data00
-datadir1: data01
-datadir2: data02
-```
+    - hosts: servers
+      roles:
+         - { role: username.rolename, x: 42 }
 
-# Installation Role Variables :
+License
+-------
 
-Defining installation role variable in defaults/main.yml
+BSD
 
-```
----
-es_version: 2.3.4
-es_dependencies:
-  - java
-  - https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/rpm/elasticsearch/{{ es_version }}/elasticsearch-{{ es_version }}.rpm
-```
+Author Information
+------------------
 
-# Cluster playbook trigger
-
-Trigger playbook in all the three servers and get ready to start services.
-
-```
---- 
-
-- hosts: nodes
-  remote_user: vagrant
-  become: yes
-  roles:
-    - installation
-    - configuration
-```
-
-# Start service playbook trigger
-
-Starting the services in all the three server simulataneously.
-
-```
---- 
-
-- hosts: nodes
-  remote_user: vagrant
-  become: yes
-  roles:
-    - service_start
-```
-
-# Start service playbook trigger
-
-Stopping the services in all the three server simulataneously.
-
-```
---- 
-
-- hosts: nodes
-  remote_user: vagrant
-  become: yes
-  roles:
-    - service_stop
-```
+An optional section for the role authors to include contact information, or a website (HTML is not allowed).
