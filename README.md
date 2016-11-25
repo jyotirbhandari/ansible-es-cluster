@@ -11,7 +11,9 @@ Three minimal instances of RHEL/CentOS 7.x with ssh and internet access.
 
 Defining all the three nodes in the host file.
 
+```
 [nodes]
 192.168.100.21
 192.168.100.22
 192.168.100.23
+```
