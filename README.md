@@ -18,7 +18,7 @@ y.y.y.y
 z.z.z.z
 ```
 
-# Global Variable :
+# Global Variables :
 
 Defining directories and server host name in group_vars
 
@@ -34,3 +34,57 @@ datadir1: data01
 datadir2: data02
 ```
 
+# Installation Role Variables :
+
+Defining installation role variable in defaults/main.yml
+
+```
+---
+es_version: 2.3.4
+es_dependencies:
+  - java
+  - https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/rpm/elasticsearch/{{ es_version }}/elasticsearch-{{ es_version }}.rpm
+```
+
+# Cluster playbook trigger
+
+Trigger playbook in all the three servers and get ready to start services.
+
+```
+--- 
+
+- hosts: nodes
+  remote_user: vagrant
+  become: yes
+  roles:
+    - installation
+    - configuration
+```
+
+# Start service playbook trigger
+
+Starting the services in all the three server simulataneously.
+
+```
+--- 
+
+- hosts: nodes
+  remote_user: vagrant
+  become: yes
+  roles:
+    - service_start
+```
+
+# Start service playbook trigger
+
+Stopping the services in all the three server simulataneously.
+
+```
+--- 
+
+- hosts: nodes
+  remote_user: vagrant
+  become: yes
+  roles:
+    - service_stop
+```
