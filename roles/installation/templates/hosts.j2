@@ -1,5 +1,5 @@
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
-{{ server1_ip }} server1
-{{ server2_ip }} server2
-{{ server3_ip }} server3
+{{ groups.nodes[0]}} server1
+{{ groups.nodes[1] }} server2
+{{ groups.nodes[2] }} server3
